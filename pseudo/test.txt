@@ -1,0 +1,29 @@
+$a = 1; $a = ${\dfrac{123}{456}}
+T{\textbf{lalala}}
+$currentplancost = 0
+
+$b += 123
+$c -= 0.4
+
+
+Array $A[$n]
+Array $A[$n] = [1...7]
+
+Mat2 $M[$n][$m]
+
+$output = !AnotherAlgorithm($a, $A[$n])
+return $output
+
+if ($a > 0) {
+    $b = 5
+} else if ($a == 0 && $b || $c) {
+    $b = 0
+    $c = 0
+} else {
+    $b = -5
+    foobar
+}
+
+if(0==0){$foo=1}
+
+<<$k,$v>> = $H.Remove($k)\\
