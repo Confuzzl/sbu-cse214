@@ -1,0 +1,193 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{xcolor, colortbl}
+\setlength{\extrarowheight}{3pt}
+
+\begin{document}
+	\newcommand{\problem}[2]{
+		\noindent\textbf{Problem #1.} \\
+		Exercise Set 8.#2
+	}
+	\newcommand{\chunk}[1]{
+		\noindent\begin{minipage}[t]{\textwidth}
+			#1
+		\end{minipage}
+	}
+	\newcommand{\ques}[2]{
+		\begin{enumerate}
+			\item [#1.] \quad
+			#2
+		\end{enumerate}
+	}
+	\newcommand{\quess}[2]{
+		\begin{enumerate}
+			\item [#1.]
+			#2
+		\end{enumerate}
+	}
+	\newcommand{\Sum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+	\newcommand{\Prod}[2]{\displaystyle\prod\limits_{#1}^{#2}}
+	\newcommand{\code}[2]{\begin{tabular}[t]{|l|}
+			\hline
+			\cellcolor{blue!25}#1\\
+			\hline
+			#2
+			\hline
+	\end{tabular}}
+
+	\chunk{
+		\quess{1}{
+			Prove $n^2\in\mathcal{O}(n^3)$:\\
+			$\lim\limits_{n\rightarrow\infty}\dfrac{n^2}{n^3}=0$\\
+			$0<\infty$ therefore by limit definition of asymptotic relations $n^2\in\mathcal{O}(n^3)$\\
+
+			Prove $n^3\notin\mathcal{O}(n^2)$:\\
+			$\lim\limits_{n\rightarrow\infty}\dfrac{n^3}{n^2}=\infty$\\
+			$\infty\not<\infty$ therefore by limit definition of asymptotic relations $n^3\notin\mathcal{O}(n^2)$\\
+		}
+	}
+	\chunk{
+		\quess{2}{
+			Find the time complexities of the following algorithms
+			\begin{enumerate}[(a)]
+				\item \textsc{LinearSearch-1}\\
+				Undefined. Program never terminates.
+
+				\item \textsc{LinearSearch-2}\\
+				$\begin{aligned}
+					\text{Time} &= \Sum{i=1}{n-1}(\text{time}(\textbf{return } i) + \text{time}(i\leftarrow i+1) + \text{time}(\textbf{return } -1))\\
+					&= \Sum{i=1}{n-1}(c_1+c_2+c_3)\\
+					&= (c_1+c_2+c_3)\Sum{i}{n-1}1\\
+					&\in \Theta(n)\\
+				\end{aligned}$
+
+				\item \textsc{Factorial}\\
+				Undefined. No base case for $n=1$.
+%				$\textsc{Factorial}(n)$ is called a total of $n$ times, accounting for recursion.\\
+%				Cost of multiplication in each invocation is constant.\\
+%				$\text{Time} \in \Theta(n)$
+			\end{enumerate}
+		}
+	}
+	\chunk{
+		\ques{3}{
+			\begin{enumerate}[(i)]
+				\item
+				\code{\textsc{FindRepeatedNumberNaive}($A$[1$\dots$$n$])}{
+					\textbf{for} $i$ $\leftarrow$ 1 \textbf{to} $n$ \textbf{do}\\
+					\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+						\textbf{for} $j$ $\leftarrow$ $i$ \textbf{to} $n$ \textbf{do}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							\textbf{if} $A$[$i$] $=$ $A$[$j$] \textbf{then}\\
+							\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+								\textbf{return} $A$[$i$]\\
+							\end{tabular}\\
+						\end{tabular}\\
+					\end{tabular}\\
+					\textbf{return} $-$1\\
+				}\\
+
+				\item
+				\code{\textsc{FindRepeatedNumberEfficient}($A$[1$\dots$$n$])}{
+					Create an array $found$[1$\dots$($n$ $-$ 1)]\\
+					\textbf{for} $i$ $\leftarrow$ 1 \textbf{to} $n$ \textbf{do}\\
+					\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+						$value$ $\leftarrow$ $A$[$i$]\\
+						\textbf{if} $found$[$value$] $=$ True \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							\textbf{return} $value$\\
+						\end{tabular}\\
+						$found$[$value$] $\leftarrow$ True\\
+					\end{tabular}\\
+					\textbf{return} $-$1\\
+				}\\
+			\end{enumerate}
+		}
+	}
+	\chunk{
+		\ques{4}{
+			\begin{enumerate}[(i)]
+				\item
+				\code{\textsc{GroupingNaive}($A$[1$\dots$$n$])}{
+					$remove\_index$ $\leftarrow$ 1\\
+					\textbf{for} $i$ $\leftarrow$ 1 \textbf{to} $n$ \textbf{do}\\
+					\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+						$element$ $\leftarrow$ $A$[$i$]\\
+						\textbf{if} \textsc{IsPerfectSquare}($element$) \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							$remove\_index$ $\leftarrow$ $i$\\
+							\textbf{for} $j$ $\leftarrow$ $remove$ $-$ 1 \textbf{down to} 0 \textbf{do}\\
+							\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+								$A$[$j$ $+$ 1] $\leftarrow$ $A$[$j$]\\
+							\end{tabular}\\
+							$A$[1] $\leftarrow$ $element$\\
+						\end{tabular}\\
+					\end{tabular}\\
+				}\\
+
+				\item
+				\code{\textsc{GroupingBest}($A$[1$\dots$$n$])}{
+					$left$ $\leftarrow$ 1; $right$ $\leftarrow$ $n$\\
+					\textbf{while} $left$ $<$ $right$ \textbf{do}\\
+					\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+						$a$ $\leftarrow$ $A$[$left$]; $b$ $\leftarrow$ $A$[$right$]\\
+						$asq$ $\leftarrow$ \textsc{IsPerfectSquare}($a$); $bsq$ $\leftarrow$ \textsc{IsPerfectSquare}($b$)\\
+						\textbf{if} \textbf{not} $asq$ \textbf{and} $bsq$ \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							\textsc{Swap}($a$, $b$)\\
+						\end{tabular}\\
+						\textbf{if} $asq$ \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							$left$ $\leftarrow$ $left$ $+$ 1\\
+						\end{tabular}\\
+						\textbf{if} \textbf{not} $bsq$ \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							$right$ $\leftarrow$ $right$ $-$ 1\\
+						\end{tabular}\\
+					\end{tabular}\\
+				}\\
+			\end{enumerate}
+		}
+	}
+	\chunk{
+		\ques{5}{
+			\begin{enumerate}[(i)]
+				\item
+				\code{\textsc{JosephusProblemArray}($n$, $k$, $j$)}{
+					Create an array $people$[$i$$\dots$$n$] $\leftarrow$ [$i$$\dots$$n$]\\
+					$capped$ $\leftarrow$ ($n$ $\%$ $k$ $=$ 0) ? $j$ : \textsc{Min}($j$, $n$)\\
+					$index$ $\leftarrow$ 0\\
+					$visited\_since\_last\_kill$ $\leftarrow$ $k$\\
+					$killed$ $\leftarrow$ 0\\
+					$last\_killed$ $\leftarrow$ 0\\
+					\textbf{while} $killed$ $<$ $capped$ \textbf{do}\\
+					\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+						$i$ $\leftarrow$ $index$ $\%$ $n$\\
+						$person$ $\leftarrow$ $people$[$i$]\\
+						\textbf{if} $person$ $=$ 0 \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							$index$ $\leftarrow$ $index$ $+$ 1\\
+						\end{tabular}\\
+						\textbf{else if} $visited\_since\_last\_kill$ $=$ $k$ \textbf{then}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							$last\_killed$ $\leftarrow$ $person$\\
+							$people$[$i$] $\leftarrow$ 0\\
+							$killed$ $\leftarrow$ $killed$ $+$ 1\\
+							$visited\_since\_last\_kill$ $\leftarrow$ 0\\
+						\end{tabular}\\
+						\textbf{else}\\
+						\begin{tabular}{@{\hskip 0.25em}|@{\hskip 1em}l}
+							$visited\_since\_last\_kill$ $\leftarrow$ $visited\_since\_last\_kill$ $+$ 1\\
+						\end{tabular}\\
+						$index$ $\leftarrow$ $index$ $+$ 1\\
+					\end{tabular}\\
+					\textbf{return} $last\_killed$\\
+				}\\
+			\end{enumerate}
+		}
+	}
+\end{document}
