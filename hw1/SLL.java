@@ -228,27 +228,27 @@ class Main {
         list.addFirst(50);
         list.removeFirst(); // Removes 50
         list.removeFirst(); // Removes 40
-        list.removeLast(); // Removes 30
-        list.removeLast(); // Removes 20
-        list.print(); // 10 -> 20 -> 30 -> 30 -> 20 -> 10 -> 10 -> null
-
+        list.removeLast();  // Removes 30
+        list.removeLast();  // Removes 20
+        list.print();       // 10 -> 20 -> 30 -> 30 -> 20 -> 10 -> 10 -> null
+        
         list.printEvenPositions(); // 20 30 10
-        list.addFirst(20); // Adds 20 at the start
+        list.addFirst(20);         // Adds 20 at the start
         list.printEvenPositions(); // 10 30 20 10
 
-        list.addAtPosition(60, 1); // Adds 60 at position 1
+        list.addAtPosition(60, 1); // Adds 60 at position 1 
         list.addAtPosition(20, 6); // Adds 20 at position 6
         list.addAtPosition(30, 7); // Adds 30 at position 7
         list.addAtPosition(50, 15); // Position 15 is invalid and hence 50 is not added
-        list.print();
+        list.print(); // 60 -> 20 -> 10 -> 20 -> 30 -> 20 -> 30 -> 30 -> 20 -> 50 -> null
 
-        int index = list.search(70);
+        int index = list.search(70); 
         System.out.println("First index of 70: " + index); // -1 (70 is not in the list)
 
-        index = list.search(10);
+        index = list.search(10); 
         System.out.println("First index of 10: " + index); // 3
 
-        index = list.search(60);
+        index = list.search(60); 
         System.out.println("First index of 60: " + index); // 1
 
         int count = list.countOccurrences(70);
@@ -259,8 +259,7 @@ class Main {
 
         count = list.countOccurrences(60);
         System.out.println("Occurrences of 60: " + count); // 1
-        list.print();
-
+        
         list.removeKey(30); // Removes the first occurrence of 30
         list.removeKey(30); // Removes the next occurrence of 30
         list.removeKey(30); // Removes the last occurrence of 30
@@ -268,9 +267,7 @@ class Main {
         list.print(); // 60 -> 20 -> 10 -> 20 -> 20 -> 20 -> 10 -> 10 -> null
 
         list.removeAtPosition(1); // Removes the first element (60)
-        list.print();
         list.removeAtPosition(7); // Removes the last element (10)
-        list.print();
         list.removeAtPosition(7); // Position invalid and hence does nothing
         list.print(); // 20 -> 10 -> 20 -> 20 -> 20 -> 10 -> null
     }
